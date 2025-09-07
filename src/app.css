@@ -1,0 +1,20 @@
+:root { --bg:#0b0c10; --fg:#e7e7ea; --muted:#a9a9b3; --a:#8b5cf6; --b:#06b6d4; }
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial}
+
+.wrap{min-height:100%;padding:24px}
+.top{max-width:1100px;margin:0 auto 40px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-weight:800;letter-spacing:.2px}
+.links a{color:var(--muted);text-decoration:none;margin-left:16px;font-size:14px}
+.links a:hover{color:var(--fg)}
+
+.hero{max-width:1100px;margin:0 auto;text-align:center;padding:0 16px}
+.hero h1{font-size:clamp(34px,6vw,64px);line-height:1.05;margin:0 0 12px;font-weight:900}
+.accent{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.tag{color:var(--muted);max-width:760px;margin:8px auto 24px}
+
+.cta{display:flex;gap:12px;justify-content:center}
+.btn{border:1px solid #2b2c31;border-radius:12px;padding:12px 18px;background:#14151b;color:var(--fg);font-weight:600;cursor:pointer}
+.btn.primary{border-color:transparent;background:linear-gradient(90deg,var(--a),var(--b));color:#0b0c10}
+.btn:hover{transform:translateY(-1px);transition:transform .08s}
