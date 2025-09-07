@@ -1,5 +1,5 @@
 //import { useNavigate } from "react-router-dom"; // if you add routing later
-import "./landing.css";
+import "./app.css";
 
 export default function App() {
   const navigate = (path: string) => () => {
