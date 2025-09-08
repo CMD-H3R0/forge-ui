@@ -1,15 +1,26 @@
-import './app.css';
+// src/App.tsx
+import "./app.css";
+import { useCallback } from "react";
+import { Link } from "react-router-dom";
+import SparksWidget from "./components/SparksWidget";
 
 export default function App() {
+  const handleCreateClick = useCallback(() => {
+    const el = document.getElementById("sparks-demo");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      // give the DOM a tick to scroll, then focus the title input if present
+      setTimeout(() => {
+        const title = document.getElementById("spark-title") as HTMLInputElement | null;
+        title?.focus();
+      }, 400);
+    }
+  }, []);
+
   return (
     <main className="container" role="main">
       {/* Logo */}
-      <img
-        src="/HD_N3RVV.png"
-        alt="N3RVV mark"
-        className="logo"
-        aria-hidden="false"
-      />
+      <img src="/HD_N3RVV.png" alt="N3RVV Logo" className="logo" />
 
       {/* Headline */}
       <header>
@@ -24,18 +35,18 @@ export default function App() {
         </p>
       </header>
 
-      {/* Decorative spark divider */}
-      <div className="spark-divider" aria-hidden="true" />
-
-      {/* CTAs */}
+      {/* Buttons */}
       <nav aria-label="Primary">
         <div className="buttons">
-          <a href="#create" className="button create" aria-label="Create a new Spark">
+          {/* Scroll the page to the embedded widget */}
+          <button type="button" className="button create" onClick={handleCreateClick}>
             Create Spark
-          </a>
-          <a href="#view" className="button view" aria-label="View existing Sparks">
+          </button>
+
+          {/* Go to the full page version */}
+          <Link className="button view" to="/sparks" aria-label="View existing Sparks">
             View Sparks
-          </a>
+          </Link>
         </div>
         <small className="cta-hint">No account required for the demo.</small>
       </nav>
@@ -44,6 +55,11 @@ export default function App() {
       <footer className="stack" aria-label="Tech stack">
         ⚙ AWS Amplify • API Gateway • Lambda • DynamoDB • S3 • Transcribe
       </footer>
+
+      {/* Embedded widget at the bottom */}
+      <section id="sparks-demo" style={{ maxWidth: 960, margin: "32px auto" }}>
+        <SparksWidget user="anon" title="Quick Spark (Demo)" />
+      </section>
     </main>
   );
 }

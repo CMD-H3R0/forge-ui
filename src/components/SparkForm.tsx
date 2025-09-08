@@ -68,3 +68,10 @@ export default function SparkForm({
     </form>
   );
 }
+// src/components/SparkForm.tsx
+// ...
+<input
+  id="spark-title"              // <-- add this
+  // ...the rest of your props (value, onChange, placeholder, styles, etc.)
+/>
+
