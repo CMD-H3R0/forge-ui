@@ -1,21 +1,30 @@
 import { useEffect, useState } from "react";
-import { listSparks } from "../lib/api";
-import type { Spark } from "../lib/api";
+import { listSparks, Spark } from "../lib/api";
 
 export default function SparkList({ user = "anon" }: { user?: string }) {
   const [sparks, setSparks] = useState<Spark[]>([]);
-  useEffect(() => { listSparks(user).then(setSparks); }, [user]);
+
+  useEffect(() => {
+    listSparks(user).then(setSparks).catch(console.error);
+  }, [user]);
+
+  const item: React.CSSProperties = {
+    padding: "10px 0",
+    borderBottom: "1px solid rgba(255,255,255,0.08)",
+  };
+  const meta: React.CSSProperties = { opacity: 0.7, fontSize: 12 };
+
+  if (!sparks.length) return <div style={{ opacity: 0.7 }}>No sparks yet.</div>;
 
   return (
-    <div className="p-4 grid gap-3">
-      {sparks.map(s => (
-        <div key={s.spark_id} className="border rounded p-3">
-          <div className="text-sm opacity-60">{new Date(s.created_at).toLocaleString()}</div>
-          <div className="font-semibold">{s.title}</div>
-          <div className="opacity-80">{s.summary}</div>
+    <div>
+      {sparks.map((s) => (
+        <div key={s.spark_id} style={item}>
+          <div style={meta}>{new Date(s.created_at).toLocaleString()}</div>
+          <div style={{ fontWeight: 600 }}>{s.title}</div>
+          <div>{s.summary}</div>
         </div>
       ))}
-      {sparks.length === 0 && <div className="p-3 opacity-60">No sparks yet.</div>}
     </div>
   );
 }
