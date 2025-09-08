@@ -1,45 +1,34 @@
-//import { useNavigate } from "react-router-dom"; // if you add routing later
-import "./app.css";
+import './app.css';
 
-export default function App() {
-  const navigate = (path: string) => () => {
-    // If you don’t have routing yet, wire these to onClick handlers in the page.
-    console.log("TODO: go to", path);
-  };
-
+function App() {
   return (
-    <main className="landing">
-      {/* floating background blobs */}
-      <div className="blob blob-a" />
-      <div className="blob blob-b" />
+    <div className="container">
+      {/* Logo */}
+      <img src="/HD_N3RVV.png" alt="N3RVV Logo" className="logo" />
 
-      <header className="nav">
-        <div className="brand">
-          <span className="logo">⚡</span>
-          <span>N3RVV Forge</span>
-        </div>
-        <div className="links">
-          <a href="#" onClick={navigate("/sparks")}>Sparks</a>
-          <a href="#" onClick={navigate("/about")}>About</a>
-          <a href="https://github.com/CMD-H3R0/forge-ui" target="_blank">GitHub</a>
-        </div>
-      </header>
+      {/* Headline */}
+      <h1>
+        <span>Capture sparks.</span>
+        <br />
+        Grow a <span>Concept Forest.</span>
+      </h1>
+      <p>
+        A fast, cross-platform way to log ideas (text &amp; voice), score signal,
+        and watch clusters form.
+      </p>
 
-      <section className="hero">
-        <h1><span className="accent">Capture</span> sparks. <br/>Grow a <span className="accent">Concept Forest</span>.</h1>
-        <p className="tagline">
-          A fast, cross-platform way to log ideas (text & voice), score signal, and watch clusters form.
-        </p>
+      {/* Buttons */}
+      <div className="buttons">
+        <a href="#" className="button create">Create Spark</a>
+        <a href="#" className="button view">View Sparks</a>
+      </div>
 
-        <div className="cta">
-          <button className="btn primary" onClick={navigate("/create")}>Create Spark</button>
-          <button className="btn ghost" onClick={navigate("/sparks")}>View Sparks</button>
-        </div>
-
-        <div className="notes">
-          <span>⚙️ AWS Amplify • API Gateway • Lambda • DynamoDB • S3 • Transcribe</span>
-        </div>
-      </section>
-    </main>
+      {/* Stack */}
+      <div className="stack">
+        ⚙ AWS Amplify • API Gateway • Lambda • DynamoDB • S3 • Transcribe
+      </div>
+    </div>
   );
 }
+
+export default App;
