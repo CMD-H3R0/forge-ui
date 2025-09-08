@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { createSpark, Spark } from "../lib/api";
+import { createSpark } from "../lib/api";
+import type { Spark } from "../lib/api";
+
 
 export default function SparkForm({
   onCreated,
