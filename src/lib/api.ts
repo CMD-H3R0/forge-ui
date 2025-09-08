@@ -5,6 +5,7 @@ export type Spark = {
 };
 
 const BASE = (import.meta as any).env?.VITE_API_URL?.replace(/\/+$/,'');
+console.log("VITE_API_URL at build:", import.meta.env.VITE_API_URL);
 if (!BASE) console.error("VITE_API_URL is missing");
 
 async function jsonOrThrow(res: Response){
