@@ -68,3 +68,24 @@ p {
   font-size: 0.9rem;
   color: #9ca3af;
 }
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#root {
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center;     /* center vertically */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* center logo + text horizontally */
+  text-align: center;
+}
+
