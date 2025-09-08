@@ -2,32 +2,6 @@ import { useState } from "react";
 import { createSpark, type Spark } from "../lib/api";
 
 export default function SparkForm({
-  user, onCreated,
-}: { user: string; onCreated: (s: Spark) => void; }) {
-  const [title, setTitle] = useState("");
-  const [summary, setSummary] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [err, setErr] = useState<string | null>(null);
-
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setErr(null); setBusy(true);
-    try {
-      const made = await createSpark({
-        user_sub: user,
-        title: title.trim(),
-        summary: summary.trim(),
-        vessel: "text.web",
-      });
-      onCreated(made);
-      setTitle(""); setSummary("");
-    } catch (e: any) {
-      setErr(e?.message ?? "Failed to create spark");
-    } finally {
-      setBusy(false);import { useState } from "react";
-import { createSpark, type Spark } from "../lib/api";
-
-export default function SparkForm({
   user,
   onCreated,
 }: {
@@ -60,43 +34,34 @@ export default function SparkForm({
     }
   }
 
+  const inputStyle: React.CSSProperties = {
+    width: "100%",
+    fontSize: 14,
+    lineHeight: 1.25,
+    padding: "8px 10px",
+    borderRadius: 10,
+    border: "1px solid rgba(255,255,255,0.12)",
+    background: "rgba(255,255,255,0.06)",
+    color: "#e8e9ea",
+    outline: "none",
+  };
+
   return (
     <form
       onSubmit={onSubmit}
-      style={{ display: "flex", flexDirection: "column", gap: "8px" }}
+      style={{ display: "flex", flexDirection: "column", gap: 8 }}
     >
       <input
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Title"
-        style={{
-          width: "100%",
-          fontSize: 14,
-          padding: "8px 10px",
-          borderRadius: 10,
-          border: "1px solid rgba(255,255,255,0.12)",
-          background: "rgba(255,255,255,0.06)",
-          color: "#e8e9ea",
-          outline: "none",
-        }}
+        style={inputStyle}
       />
       <textarea
         value={summary}
         onChange={(e) => setSummary(e.target.value)}
         placeholder="Summary"
-        style={{
-          width: "100%",
-          fontSize: 14,
-          lineHeight: 1.25,
-          padding: "8px 10px",
-          borderRadius: 10,
-          border: "1px solid rgba(255,255,255,0.12)",
-          background: "rgba(255,255,255,0.06)",
-          color: "#e8e9ea",
-          resize: "vertical",
-          minHeight: 80,
-          outline: "none",
-        }}
+        style={{ ...inputStyle, minHeight: 80, resize: "vertical" as const }}
       />
       <button
         type="submit"
@@ -110,8 +75,8 @@ export default function SparkForm({
           cursor: busy ? "not-allowed" : "pointer",
           color: "#fff",
           background: busy
-            ? "linear-gradient(90deg,#94a3b8,#64748b)" // gray gradient when busy
-            : "linear-gradient(90deg,#6366f1,#3b82f6)", // purple→blue
+            ? "linear-gradient(90deg,#94a3b8,#64748b)"
+            : "linear-gradient(90deg,#6366f1,#3b82f6)",
           boxShadow: busy
             ? "0 0 6px rgba(100,116,139,0.4)"
             : "0 0 12px rgba(59,130,246,0.45)",
@@ -125,21 +90,6 @@ export default function SparkForm({
           {err}
         </div>
       )}
-    </form>
-  );
-}
-
-    }
-  }
-
-  return (
-    <form onSubmit={onSubmit}>
-      <input value={title} onChange={(e)=>setTitle(e.target.value)} placeholder="Title" />
-      <textarea value={summary} onChange={(e)=>setSummary(e.target.value)} placeholder="Summary" />
-      <button type="submit" disabled={busy}>
-        {busy ? "Creating…" : "Create Spark"}
-      </button>
-      {err && <div role="alert">{err}</div>}
     </form>
   );
 }
