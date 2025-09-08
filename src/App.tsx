@@ -44,3 +44,8 @@ export default function App() {
     </div>
   );
 }
+
+<p style={{ marginTop: 12 }}>
+  <a href="/sparks">Open Sparks UI →</a>
+</p>
+
