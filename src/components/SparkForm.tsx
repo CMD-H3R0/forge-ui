@@ -1,77 +1,65 @@
+// src/components/SparkForm.tsx
 import { useState } from "react";
 import { createSpark } from "../lib/api";
 import type { Spark } from "../lib/api";
 
-
 export default function SparkForm({
-  onCreated,
   user = "anon",
+  onCreated,
 }: {
-  onCreated: (s: Spark) => void;
   user?: string;
+  onCreated?: (s: Spark) => void;
 }) {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
 
-  const row: React.CSSProperties = { display: "grid", gap: 8, marginBottom: 8 };
-  const input: React.CSSProperties = {
-    width: "100%",
-    padding: "8px 10px",
-    borderRadius: 8,
-    border: "1px solid rgba(255,255,255,0.15)",
-    background: "rgba(255,255,255,0.06)",
-    color: "inherit",
-  };
-  const btn: React.CSSProperties = {
-    padding: "10px 14px",
-    borderRadius: 10,
-    border: "1px solid rgba(255,255,255,0.2)",
-    background: "rgba(255,255,255,0.1)",
-    cursor: "pointer",
-    fontWeight: 600,
-  };
-
-  async function submit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const s = await createSpark({
-      user_sub: user,
-      title,
-      summary,
-      vessel: "text.web",
-    });
-    onCreated(s);
-    setTitle("");
-    setSummary("");
+    if (!title.trim() || busy) return;
+    setBusy(true);
+    setErr(null);
+    try {
+      const created = await createSpark({
+        user_sub: user,
+        title: title.trim(),
+        summary: summary.trim(),
+        vessel: "text.web",
+      });
+      setTitle("");
+      setSummary("");
+      onCreated?.(created);
+    } catch (ex: any) {
+      setErr(ex?.message ?? "Failed to create spark");
+    } finally {
+      setBusy(false);
+    }
   }
 
   return (
-    <form onSubmit={submit}>
-      <div style={row}>
+    <form onSubmit={onSubmit} aria-live="polite">
+      <div style={{ marginBottom: 12 }}>
         <input
-          style={input}
+          id="spark-title"
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
         />
+      </div>
+      <div style={{ marginBottom: 12 }}>
         <textarea
-          style={{ ...input, minHeight: 80, resize: "vertical" }}
           placeholder="Summary"
           value={summary}
           onChange={(e) => setSummary(e.target.value)}
-          required
+          rows={5}
         />
       </div>
-      <button type="submit" style={btn}>
-        Create Spark
+      <button type="submit" className="button create" disabled={busy}>
+        {busy ? "Creating…" : "Create Spark"}
       </button>
+      {err && <span style={{ marginLeft: 12, opacity: 0.85 }}>{err}</span>}
     </form>
   );
 }
-// src/components/SparkForm.tsx
-// ...
-<input
-  id="spark-title"              // <-- add this
-  // ...the rest of your props (value, onChange, placeholder, styles, etc.)
-/>
-
