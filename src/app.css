@@ -136,3 +136,23 @@ p {
   .logo { animation: none !important; }
   .button { transition: none !important; }
 }
+/* full-bleed band that spans the whole viewport width */
+.full-bleed {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+  background: #0e0f12;          /* same dark as your page */
+  padding: 32px 0 56px;         /* breathing room above/below */
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+/* optional: ensure body stays dark all the way down */
+html, body, #root { background: #0e0f12; }
+
+:root { color-scheme: dark; }
+html, body, #root { background: #0e0f12; min-height: 100%; }
+body { margin: 0; }
+.container { background: transparent; }

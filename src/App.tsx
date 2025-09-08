@@ -57,7 +57,64 @@ export default function App() {
       </footer>
 
       {/* Full-bleed dark band with embedded widget */}
-      <div className="full-bleed">
+<div className="full-bleed">
+  {/* GLOBAL + scoped fixes so the bottom never goes white */}
+  <style>{`
+    /* Make the whole page dark and remove default margins */
+    :root { color-scheme: dark; }
+    html, body, #root { background: #0e0f12; min-height: 100%; }
+    body { margin: 0; background: #0e0f12; }
+
+    /* Full-bleed band spans edge-to-edge */
+    .full-bleed {
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      width: 100vw;
+      background: #0e0f12;
+      padding: 32px 0 80px; /* extra bottom padding so table never "falls off" */
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* Keep landing container transparent */
+    .container { background: transparent; }
+
+    /* Normalize + compact inputs just in the embedded widget */
+    #sparks-demo *, #sparks-demo *::before, #sparks-demo *::after { box-sizing: border-box; }
+    #sparks-demo h2 { margin: 0 0 8px 0; line-height: 1.25; }
+    #sparks-demo input, #sparks-demo textarea {
+      width: 100%;
+      font-size: 14px;
+      line-height: 1.25;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      color: #e8e9ea;
+      outline: none;
+    }
+    #sparks-demo textarea { resize: vertical; min-height: 96px; }
+    #sparks-demo .button.create { margin-top: 8px; }
+
+    /* Ensure table & cells don’t reintroduce a white background */
+    #sparks-demo table,
+    #sparks-demo thead,
+    #sparks-demo tbody,
+    #sparks-demo tr,
+    #sparks-demo td,
+    #sparks-demo th {
+      background: transparent !important;
+    }
+  `}</style>
+
+  <section id="sparks-demo" style={{ maxWidth: 960, margin: "0 auto", padding: "0 16px" }}>
+    <SparksWidget user="anon" title="Quick Spark (Demo)" />
+  </section>
+</div>
+      
+<div className="full-bleed">
         {/* Local normalize + tiny-input styles scoped to this section only */}
         <style>{`
           /* scope everything to #sparks-demo so landing styles stay pristine */
