@@ -1,4 +1,5 @@
 import './app.css';
+import SparksWidget from "./components/SparksWidget";
 
 export default function App() {
   return (
@@ -40,6 +41,11 @@ export default function App() {
       <footer className="stack" aria-label="Tech stack">
         ⚙ AWS Amplify • API Gateway • Lambda • DynamoDB • S3 • Transcribe
       </footer>
+
+      {/* --- Sparks widget embedded at the bottom --- */}
+      <section style={{ maxWidth: 960, margin: "32px auto" }} id="sparks-demo">
+        <SparksWidget user="anon" title="Quick Spark (Demo)" />
+      </section>
     </main>
   );
 }
