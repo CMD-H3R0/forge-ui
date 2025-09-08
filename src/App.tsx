@@ -18,9 +18,8 @@ export default function App(){
           <a href="#demo" className="button create">Create Spark</a>
           <Link className="button view" to="/sparks">View Sparks</Link>
         </div>
-        <small className="cta-hint">No account required for the demo.</small>
+        {/*<small className="cta-hint">No account required for the demo.</small> */}
       </nav>
-      <footer className="stack" aria-label="Tech stack">⚙ AWS Amplify • API Gateway • Lambda • DynamoDB • S3 • Transcribe</footer>
 
        <footer className="stack" aria-label="Tech stack">
         ⚙ AWS Amplify • API Gateway • Lambda • DynamoDB • S3 • Transcribe
