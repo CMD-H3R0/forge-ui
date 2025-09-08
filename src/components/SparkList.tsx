@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { listSparks, Spark } from "../lib/api";
+import { listSparks } from "../lib/api";
+import type { Spark } from "../lib/api";
 
 export default function SparkList({ user = "anon" }: { user?: string }) {
   const [sparks, setSparks] = useState<Spark[]>([]);
