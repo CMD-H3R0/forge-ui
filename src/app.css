@@ -1,54 +1,138 @@
-/* ---- Headline gradient colors (re-add if lost) ---- */
-.text-warm{
-  background:linear-gradient(90deg,#b91c1c,#ef4444,#fb7185);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-}
-.text-cool{
-  background:linear-gradient(90deg,#60a5fa,#22d3ee,#7dd3fc);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+/* Reset + base layout */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
 }
 
-/* ---- Buttons: framed + spaced ---- */
-.buttons{
-  display:flex;
-  gap:16px;                 /* space between buttons */
-  justify-content:center;
-  align-items:center;
-  margin:1.1rem 0 0;
+#root {
+  display: grid;
+  place-items: center;
+  /* dark gray to black background */
+  background: radial-gradient(1200px 700px at 50% 25%, #111318 0%, #0c0f13 45%, #08090b 100%);
+  color: #e5e7eb; /* light gray text */
+  font-family: Arial, sans-serif;
 }
 
-.button{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:0.75rem 1.5rem;
-  border-radius:10px;
-  font-weight:700;
-  text-decoration:none;
-  line-height:1;
-  border:1.5px solid #374151;        /* frame by default */
-  color:#e5e7eb;
-  background:transparent;
-  transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease, border-color .15s ease;
+/* Container for stacking logo, headline, buttons */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: min(92vw, 900px);
+}
+
+/* Logo with pulsing blue glow */
+.logo {
+  max-width: 220px;
+  margin-bottom: 1.6rem;
+  animation: bluePulse 6s infinite ease-in-out;
+}
+
+@keyframes bluePulse {
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 8px rgba(59, 130, 246, 0.6))   /* blue-500 */
+      drop-shadow(0 0 18px rgba(37, 99, 235, 0.5));  /* blue-600 */
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 16px rgba(59, 130, 246, 0.95)) /* bright blue */
+      drop-shadow(0 0 40px rgba(147, 197, 253, 0.8));/* light halo */
+  }
+}
+
+/* Headline */
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+/* Gradient headline colors */
+.text-warm {
+  background: linear-gradient(90deg, #8b5cf6, #3b82f6); /* purple → blue */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-cool {
+  background: linear-gradient(90deg, #06b6d4, #3b82f6); /* cyan → blue */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Supporting paragraph */
+p {
+  font-size: 1.1rem;
+  margin: 0.5rem 0 1.5rem;
+  max-width: 600px;
+  color: #d1d5db; /* softer gray */
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  gap: 16px;                 /* space between buttons */
+  justify-content: center;
+  align-items: center;
+  margin: 1.1rem 0 0;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  line-height: 1;
+  border: 1.5px solid #374151;        /* frame by default */
+  color: #e5e7eb;
+  background: transparent;
+  transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease, border-color .15s ease;
 }
 
 /* Primary (filled) */
-.create{
-  border:none;
-  color:#fff;
-  background:linear-gradient(90deg,#6366f1,#06b6d4);
-  box-shadow:0 6px 20px rgba(3,105,161,.25);
+.create {
+  border: none;
+  color: #fff;
+  background: linear-gradient(90deg, #6366f1, #06b6d4);
+  box-shadow: 0 6px 20px rgba(3,105,161,.25);
 }
-.create:hover{ transform:translateY(-1px); box-shadow:0 10px 26px rgba(3,105,161,.33); }
+.create:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(3,105,161,.33);
+}
 
 /* Secondary (outlined) */
-.view{
-  background:rgba(17,24,39,.55);     /* subtle filled dark */
-  border-color:#4b5563;
+.view {
+  background: rgba(17,24,39,.55);     /* subtle filled dark */
+  border-color: #4b5563;
 }
-.view:hover{ transform:translateY(-1px); border-color:#6b7280; }
+.view:hover {
+  transform: translateY(-1px);
+  border-color: #6b7280;
+}
 
-/* Keep buttons readable if motion reduced */
-@media (prefers-reduced-motion: reduce){
-  .button{ transition:none; }
+/* Stack text (AWS etc.) */
+.stack {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-top: 1.5rem;
+}
+
+/* Accessibility: better focus */
+.button:focus-visible {
+  outline: 3px solid rgba(99, 102, 241, 0.9);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgba(99, 102, 241, 0.25);
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .logo { animation: none !important; }
+  .button { transition: none !important; }
 }
