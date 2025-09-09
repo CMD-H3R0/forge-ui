@@ -19,7 +19,7 @@ type DemoExtras = {
 type PreviewRow = PersistedPayload & DemoExtras;
 
 type Props = {
-  user: string;             // you pass "anon" now; unused here but kept for future
+  user?: string;             // you pass "anon" now; unused here but kept for future
   title?: string;
 };
 
@@ -33,7 +33,7 @@ const CATEGORIES = [
   "Other",
 ];
 
-export default function SparksWidget({ user, title = "Quick Spark (Demo)" }: Props) {
+export default function SparksWidget({ title = "Quick Spark (Demo)" }: Props) {
   // Form state
   const [form, setForm] = useState({
     title: "",
