@@ -52,3 +52,122 @@
 @media (prefers-reduced-motion: reduce){
   .button{ transition:none; }
 }
+/* Spark widget demo styles */
+.spark-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  padding:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+.spark-header{
+  display:flex; justify-content:space-between; align-items:baseline;
+  margin-bottom:10px;
+}
+.spark-header h3{ margin:0; }
+.muted{ color:#9aa3ad; }
+
+.spark-form{ display:grid; gap:14px; }
+.field{ display:grid; gap:6px; }
+.field > span{ font-weight:600; }
+.req{ color:#ff7b72 }
+
+.grid-2{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+@media (max-width:640px){ .grid-2{ grid-template-columns: 1fr; } }
+
+.spark-form input[type="text"],
+.spark-form textarea,
+.spark-form select{
+  width:100%;
+  font-size:14px; line-height:1.35;
+  padding:10px 12px; border-radius:10px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06); color:#e8e9ea; outline:none;
+}
+
+.spark-form input[type="range"]{ width:100%; }
+
+.actions{ display:flex; gap:10px; }
+.button.ghost{
+  background:transparent; border:1px solid rgba(255,255,255,.18); color:#e8e9ea;
+}
+
+.preview{
+  margin-top:16px;
+  border:1px dashed rgba(255,255,255,.2);
+  border-radius:12px;
+}
+.preview-head{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:10px 12px; border-bottom:1px dashed rgba(255,255,255,.2);
+}
+.preview-body{ padding:12px; display:grid; gap:8px; }
+.preview .row{ display:grid; grid-template-columns: 140px 1fr; gap:10px; }
+.preview .label{ color:#9aa3ad; }
+
+
+/* Spark widget demo styles */
+.spark-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  padding:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+.spark-header{
+  display:flex; justify-content:space-between; align-items:baseline;
+  margin-bottom:10px;
+}
+.spark-header h3{ margin:0; }
+.muted{ color:#9aa3ad; }
+
+.spark-form{ display:grid; gap:14px; }
+.field{ display:grid; gap:6px; }
+.field > span{ font-weight:600; }
+.req{ color:#ff7b72 }
+
+.grid-2{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+@media (max-width:640px){ .grid-2{ grid-template-columns: 1fr; } }
+
+.spark-form input[type="text"],
+.spark-form textarea,
+.spark-form select{
+  width:100%;
+  font-size:14px; line-height:1.35;
+  padding:10px 12px; border-radius:10px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06); color:#e8e9ea; outline:none;
+}
+
+.spark-form input[type="range"]{ width:100%; }
+
+.actions{ display:flex; gap:10px; }
+.button.ghost{
+  background:transparent; border:1px solid rgba(255,255,255,.18); color:#e8e9ea;
+}
+
+/* Preview card */
+.preview{
+  margin-top:16px;
+  border:1px dashed rgba(255,255,255,.2);
+  border-radius:12px;
+}
+.preview-head{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:10px 12px; border-bottom:1px dashed rgba(255,255,255,.2);
+}
+.preview-body{ padding:12px; display:grid; gap:8px; }
+.preview .row{ display:grid; grid-template-columns: 140px 1fr; gap:10px; }
+.preview .label{ color:#9aa3ad; }
+
+/* Preview table */
+.table-wrap{ overflow:auto; border-radius:12px; border:1px solid rgba(255,255,255,.08); }
+.spark-table{ width:100%; border-collapse:collapse; }
+.spark-table th, .spark-table td{
+  padding:10px 12px; border-bottom:1px solid rgba(255,255,255,.08);
+}
+.spark-table thead th{
+  text-align:left; color:#c7d0db; background:rgba(255,255,255,.04);
+}
